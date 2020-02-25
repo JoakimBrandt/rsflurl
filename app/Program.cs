@@ -16,9 +16,13 @@ namespace app
         }
 
         static void fetch() {
-            var client = new RSClient("https://api.nasa.gov/","planetary/apod");
-            var fetchedData = client.fetchData();
-            Console.WriteLine("FRÅN NASA:"+fetchedData);
+            //var client = new RSClient("https://api.nasa.gov/","planetary/apod");
+            var client = new FlurlClient("https://api.nasa.gov/", "planetary/apod");
+            //var fetchedData = client.fetchData();
+            Console.WriteLine("SKRIVER LITE SÅ DET TAR TID.........................");
+            var response = client.getJsonAsync();
+            //Console.WriteLine("FRÅN NASA:"+fetchedData);
+            Console.WriteLine("FRÅN NASA:"+response);
         }
 
 
