@@ -2,6 +2,8 @@ using Flurl;
 using Flurl.Http;
 using System.Threading.Tasks;
 using poco;
+using System.Text.Json;
+
 using System;
 using System.Collections.Generic;
 
@@ -38,13 +40,17 @@ namespace Client {
         }
 
         public async Task<string> getJsonAsync() {
-            var JsonResponse = await _targetUrl
-            .AppendPathSegments(_targetResourceList[0], _targetResourceList[1])
-            .SetQueryParam("api_key", "DEMO_KEY")
-            .GetJsonAsync();
 
-            //kan inte skriva ut för att det är ett dynamisk object?
-            Console.WriteLine(JsonResponse);
+            var JsonResponse = await _targetUrl.AppendPathSegments(_targetResourceList[0], _targetResourceList[1]).SetQueryParam("api_key", "DEMO_KEY").GetJsonAsync();
+
+            Console.WriteLine("HELLLLLLLO?????");
+
+
+                        //var rootData = JsonSerializer.Deserialize<String>(dataResponse);
+            //var rootData = JsonSerializer.Deserialize<string>(JsonResponse);
+            //Console.WriteLine("root data:"+rootData);
+            //varför skrivs inte json responsen ut?
+            Console.WriteLine("jsonresponse:"+JsonResponse);
             return JsonResponse;
         }
     }
