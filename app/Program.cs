@@ -16,9 +16,9 @@ namespace app
         }
 
         static void fetch() {
-            var client = new RSClient("localhost:5001/api/","Employees");
+            var client = new RSClient("https://api.nasa.gov/","planetary/apod");
             var fetchedData = client.fetchData();
-            Console.WriteLine(fetchedData);
+            Console.WriteLine("FRÅN NASA:"+fetchedData);
         }
 
 

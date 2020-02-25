@@ -38,7 +38,7 @@
           "dependencies": {
             "RestSharp": {
               "target": "Package",
-              "version": "(, )"
+              "version": "[106.10.1, )"
             }
           },
           "imports": [

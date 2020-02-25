@@ -9,3 +9,5 @@
 /Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/Debug/netcoreapp3.1/app.AssemblyInfo.cs
 /Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/Debug/netcoreapp3.1/app.dll
 /Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/Debug/netcoreapp3.1/app.pdb
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/bin/Debug/netcoreapp3.1/RestSharp.dll
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/Debug/netcoreapp3.1/app.csproj.CopyComplete
