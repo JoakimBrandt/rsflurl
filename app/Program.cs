@@ -16,9 +16,10 @@ namespace app
         }
 
         static void fetch() {
-            var client = new RSClient("localhost:5001/api/","Employees");
+            var client = new RSClient("https://cat-fact.herokuapp.com/","facts");
             var fetchedData = client.fetchData();
             Console.WriteLine(fetchedData);
+            Console.WriteLine(client);
         }
 
 

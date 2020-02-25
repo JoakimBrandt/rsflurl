@@ -32,23 +32,23 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "RestSharp"
+      "RestSharp >= 106.10.1"
     ]
   },
   "packageFolders": {
-    "/Users/fredriclundberg/.nuget/packages/": {}
+    "/home/joakim/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/app.csproj",
+      "projectUniqueName": "/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/app.csproj",
       "projectName": "app",
-      "projectPath": "/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/app.csproj",
-      "packagesPath": "/Users/fredriclundberg/.nuget/packages/",
-      "outputPath": "/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/",
+      "projectPath": "/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/app.csproj",
+      "packagesPath": "/home/joakim/.nuget/packages/",
+      "outputPath": "/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/fredriclundberg/.nuget/NuGet/NuGet.Config"
+        "/home/joakim/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -72,7 +72,7 @@
         "dependencies": {
           "RestSharp": {
             "target": "Package",
-            "version": "(, )"
+            "version": "[106.10.1, )"
           }
         },
         "imports": [
@@ -90,7 +90,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.101/RuntimeIdentifierGraph.json"
       }
     }
   }

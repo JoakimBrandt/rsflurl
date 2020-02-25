@@ -9,3 +9,16 @@
 /Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/Debug/netcoreapp3.1/app.AssemblyInfo.cs
 /Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/Debug/netcoreapp3.1/app.dll
 /Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/Debug/netcoreapp3.1/app.pdb
+/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/bin/Debug/netcoreapp3.1/app
+/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/bin/Debug/netcoreapp3.1/app.deps.json
+/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/bin/Debug/netcoreapp3.1/app.runtimeconfig.json
+/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/bin/Debug/netcoreapp3.1/app.runtimeconfig.dev.json
+/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/bin/Debug/netcoreapp3.1/app.dll
+/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/bin/Debug/netcoreapp3.1/app.pdb
+/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/bin/Debug/netcoreapp3.1/RestSharp.dll
+/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/obj/Debug/netcoreapp3.1/app.csprojAssemblyReference.cache
+/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/obj/Debug/netcoreapp3.1/app.AssemblyInfoInputs.cache
+/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/obj/Debug/netcoreapp3.1/app.AssemblyInfo.cs
+/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/obj/Debug/netcoreapp3.1/app.csproj.CopyComplete
+/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/obj/Debug/netcoreapp3.1/app.dll
+/home/joakim/Desktop/School/Examensarbete/git/rsflurl/app/obj/Debug/netcoreapp3.1/app.pdb
