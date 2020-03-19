@@ -2,30 +2,24 @@
 using System.Threading.Tasks;
 using Client;
 
+using Flurl;
+using Flurl.Http;
+
 
 namespace app
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.WriteLine("Hello World! ");
             
-            fetch();
+            var response = await "https://api.postcodes.io"
+                .AppendPathSegment("postcodes")
+                .AppendPathSegment("IP1 3JR")
+                .GetJsonAsync();
             
+            Console.WriteLine("FRÅN API:"+response);
         }
-
-        static async void fetch() {
-            //var client = new RSClient("https://api.nasa.gov/","planetary/apod");
-            var client = new FlurlClient("https://api.nasa.gov/", "planetary/apod");
-            //var fetchedData = client.fetchData();
-            var response = await client.getJsonAsync();
-            //Console.WriteLine("FRÅN NASA:"+fetchedData);
-                        Console.WriteLine("CAN U SEE ME??????");
-
-            Console.WriteLine("FRÅN NASA:"+response);
-        }
-
-
     }
 }

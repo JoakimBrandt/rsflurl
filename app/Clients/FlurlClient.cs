@@ -41,9 +41,10 @@ namespace Client {
 
         public async Task<string> getJsonAsync() {
 
-            var JsonResponse = await _targetUrl.AppendPathSegments(_targetResourceList[0], _targetResourceList[1]).SetQueryParam("api_key", "DEMO_KEY").GetJsonAsync();
 
-            Console.WriteLine("HELLLLLLLO?????");
+            var JsonResponse = await _targetUrl.AppendPathSegments("planetary", "apod").SetQueryParam("api_key", "DEMO_KEY").GetJsonAsync();
+                        Console.WriteLine("HELLLLLLLO?????");
+
 
 
                         //var rootData = JsonSerializer.Deserialize<String>(dataResponse);
