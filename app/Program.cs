@@ -12,10 +12,24 @@ namespace app
 {
     class Program
     {
-        static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World! ");
-            
+            Console.WriteLine("Hello Human");
+
+            Console.WriteLine("How many anrop do you want to send? Type 1, 8, 64, 128...: ");
+            var amountOfCalls = Console.ReadLine();
+            Console.WriteLine("You entered '{0}'", amountOfCalls);
+
+            Console.WriteLine("How much data per call do you want? Type 1, 2 or 3: ");
+            var amountOfDataPerCall = Console.ReadLine();
+            Console.WriteLine("You entered '{0}'", amountOfDataPerCall);
+
+            Console.WriteLine("Which Http Client do you want to use? Type FL or RS: ");
+            var typeOfClient = Console.ReadLine();
+            Console.WriteLine("You entered '{0}'", typeOfClient);
+        }
+
+        private async Task fetch() {
             var response = await "https://api.postcodes.io"
                 .AppendPathSegment("postcodes")
                 .AppendPathSegment("IP1 3JR")
@@ -25,20 +39,15 @@ namespace app
 
             //-------------------------
 
-            // instantiate the RestClient with the base API url
             var client = new RestClient("https://api.postcodes.io");
-            // specify the resource, e.g. https://api.postcodes.io/postcodes/IP1 3JR
             var getRequest = new RestRequest("postcodes/{postcode}");
             getRequest.AddUrlSegment("postcode", "IP1 3JR");
-            // send the GET request and return an object which contains the API's JSON response
             var singleGeocodeResponseContainer = await client.ExecuteAsync(getRequest);
-            // get the API's JSON response
             var singleGeocodeResponse = singleGeocodeResponseContainer.Content;
 
             Console.WriteLine("FRÅN API:"+singleGeocodeResponse);
-
-
-
         }
+
+
     }
 }
