@@ -16,7 +16,16 @@ namespace app
         {
             Array array = menuChoices();
 
-            Task task = fetch();
+            try
+            {
+                fetch().Wait();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"There was an exception: {ex.ToString()}");
+
+            }
+            
         }
 
         private static Array menuChoices()
@@ -44,7 +53,7 @@ namespace app
 
         private async static Task fetch() {
             Console.WriteLine("hello there");
-
+ 
             var response = await "https://api.postcodes.io"
                 .AppendPathSegment("postcodes")
                 .AppendPathSegment("IP1 3JR")
