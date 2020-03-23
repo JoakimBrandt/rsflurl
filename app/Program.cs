@@ -14,7 +14,14 @@ namespace app
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello Human");
+            Array array = menuChoices();
+
+            Task task = fetch();
+        }
+
+        private static Array menuChoices()
+        {
+            string[] choices = new string[3];
 
             Console.WriteLine("How many anrop do you want to send? Type 1, 8, 64, 128...: ");
             var amountOfCalls = Console.ReadLine();
@@ -27,15 +34,23 @@ namespace app
             Console.WriteLine("Which Http Client do you want to use? Type FL or RS: ");
             var typeOfClient = Console.ReadLine();
             Console.WriteLine("You entered '{0}'", typeOfClient);
+
+            choices[0] = amountOfCalls;
+            choices[1] = amountOfDataPerCall;
+            choices[2] = typeOfClient;
+
+            return choices;
         }
 
-        private async Task fetch() {
+        private async static Task fetch() {
+            Console.WriteLine("hello there");
+
             var response = await "https://api.postcodes.io"
                 .AppendPathSegment("postcodes")
                 .AppendPathSegment("IP1 3JR")
                 .GetJsonAsync();
             
-            Console.WriteLine("API hämtar postcoden från json objektets resultat:"+response.result.postcode);
+            Console.WriteLine("API hämtar postcoden från json objektets resultat:" + response.result.postcode);
 
             //-------------------------
 
