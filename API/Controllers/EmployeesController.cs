@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace API.Controllers
 {
-    public class ValuesController : ApiController
+    public class EmployeesController : ApiController
     {
 
         public class Results
@@ -28,7 +28,7 @@ namespace API.Controllers
 
         }
 
-        // GET api/values
+        // GET employees
         public List<Results> Get()
         {
             MySqlConnection connection = WebApiConfig.Connection();
