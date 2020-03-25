@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Diagnostics;
+
 using Client;
 
 using Flurl;
 using Flurl.Http;
 using RestSharp;
 
-
+/*
+    /get request to localhost:3000/Employees
+ */
 
 namespace app
 {
@@ -62,46 +66,73 @@ namespace app
             try
             {
                 string typeOfClient = choicesArr[_typeOfClientArrPosition];
-                
-                if(typeOfClient == "RS") {
-                    if(success) {
-                        //TODO skapa en funktion som kör x-antal loops
+
+                if(success) {
+                    if(typeOfClient == "RS") {
                         for (int i = 0; i < amountOfCalls; i++)
-                        //TODO starta upp en tråd för varje anrop
+                        //TODO starta upp en tråd för varje anrop?
                         {
-                            var response = await "https://api.postcodes.io"
-                            .AppendPathSegment("postcodes")
-                            .AppendPathSegment("IP1 3JR")
-                            .GetJsonAsync();
-                        
-                            Console.WriteLine("API hämtar postcoden från json objektets resultat:" + response.result.postcode);
+                            await RSFetchAsync();
                         }
+                    
+                    } else if(typeOfClient == "FL") {
+                        for (int i = 0; i < amountOfCalls; i++)
+                        //TODO starta upp en tråd för varje anrop?
+                        {
+                            await FLFetchAsync();
+                        }
+                    } else { 
+                        Console.WriteLine("You have not choosed any HTTP-CLient");
                     }
-                } else if(typeOfClient == "FL") {
-                    //TODO skapa en funktion som kör x-antal loops
-                    //TODO run FLurl http-client here
-                } else { 
-                    Console.WriteLine("You have not choosed any HTTP-CLient");
                 }
             }
-            
+
             catch (Exception ex)
             {
                 Console.WriteLine($"There was an exception: {ex.ToString()}");
                 throw;
-            }
+            }   
+        }
 
-        
-            //-------------------------
-
+        private async static Task RSFetchAsync() {
             var client = new RestClient("https://api.postcodes.io");
             var getRequest = new RestRequest("postcodes/{postcode}");
             getRequest.AddUrlSegment("postcode", "IP1 3JR");
-            var singleGeocodeResponseContainer = await client.ExecuteAsync(getRequest);
-            var singleGeocodeResponse = singleGeocodeResponseContainer.Content;
 
-            Console.WriteLine("FRÅN API:"+singleGeocodeResponse);
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            var singleGeocodeResponseContainer = await client.ExecuteAsync(getRequest);
+            
+            stopwatch.Stop();
+
+            long elapsedTime = stopwatch.ElapsedMilliseconds;
+            Console.WriteLine("RS RunTime " + elapsedTime);
+
+            var singleGeocodeResponse = singleGeocodeResponseContainer.Content;
+            Console.WriteLine("FRÅN API:"+singleGeocodeResponse); 
         }
+
+        private async static Task FLFetchAsync() {
+
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            var response = await "https://api.postcodes.io"
+                .AppendPathSegment("postcodes")
+                .AppendPathSegment("IP1 3JR")
+                .GetJsonAsync();
+            
+            stopwatch.Stop();
+
+            long elapsedTime = stopwatch.ElapsedMilliseconds;
+            Console.WriteLine("FL RunTime " + elapsedTime);
+            
+            
+            Console.WriteLine("API hämtar postcoden från json objektets resultat:" + response.result.postcode);
+        }
+
+        
 
 
     }
