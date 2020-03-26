@@ -87,27 +87,26 @@ namespace app
                         stopwatch2.Stop();
 
                     } else if(typeOfClient == "FL") {
+                        
                         stopwatch.Start();
-                        stopwatch2.Start();
-
                         //TODO loopen i sig tar 154 ms... kom ihåg
                         for (int i = 0; i < amountOfCalls; i++)
                         {
                             allDownloads.Add(FLFetchAsync());
                         }
 
-                        stopwatch.Stop();
                         await Task.WhenAll(allDownloads);
-                        stopwatch2.Stop();
-                    } else { 
+                        stopwatch.Stop();
+
+                    }
+                    else { 
                         Console.WriteLine("You have not choosed any HTTP-CLient");
                     }
 
                     long elapsedTime = stopwatch.ElapsedMilliseconds;
-                    Console.WriteLine("RunTime downloads123 " + elapsedTime);
+                    Console.WriteLine("RunTime inner " + elapsedTime);
                     
-                    long elapsedTime2 = stopwatch2.ElapsedMilliseconds;
-                    Console.WriteLine("RunTime downloads123 " + elapsedTime2);
+                    
                 }
             }
 
@@ -141,21 +140,16 @@ namespace app
 
         private async static Task FLFetchAsync() {
 
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
 
-            var response = await "https://api.postcodes.io"
-                .AppendPathSegment("postcodes")
-                .AppendPathSegment("IP1 3JR")
-                .GetJsonAsync();
-            
-            stopwatch.Stop();
-
-            long elapsedTime = stopwatch.ElapsedMilliseconds;
-            Console.WriteLine("FL RunTime " + elapsedTime);
+            var response = await "https://localhost:44371/"
+                .AppendPathSegment("employees")
+                .AppendPathSegment("10000")
+                .GetJsonListAsync();
             
             
-            Console.WriteLine("API hämtar postcoden från json objektets resultat:" + response.result.postcode);
+            
+            
+            Console.WriteLine("API hämtar postcoden från json objektets resultat:" + response[0].name);
         }
 
         

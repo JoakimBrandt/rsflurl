@@ -114,6 +114,8 @@ namespace API.Controllers
                     );
             }
 
+
+            connection.Close();
             return Results;
         }
     }
