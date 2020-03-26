@@ -1,0 +1,11 @@
+CREATE DATABASE rsflurl;
+USE rsflurl;
+
+CREATE TABLE IF NOT EXISTS `Employees` (
+  Id INT NOT NULL AUTO_INCREMENT,
+  Name LONGTEXT,
+  Email LONGTEXT,
+  Phone LONGTEXT,
+  Address LONGTEXT,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB;
