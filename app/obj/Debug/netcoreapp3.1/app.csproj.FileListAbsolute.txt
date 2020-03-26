@@ -1,0 +1,16 @@
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/bin/Debug/netcoreapp3.1/app
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/bin/Debug/netcoreapp3.1/app.deps.json
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/bin/Debug/netcoreapp3.1/app.runtimeconfig.json
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/bin/Debug/netcoreapp3.1/app.runtimeconfig.dev.json
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/bin/Debug/netcoreapp3.1/app.dll
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/bin/Debug/netcoreapp3.1/app.pdb
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/Debug/netcoreapp3.1/app.csprojAssemblyReference.cache
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/Debug/netcoreapp3.1/app.AssemblyInfoInputs.cache
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/Debug/netcoreapp3.1/app.AssemblyInfo.cs
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/Debug/netcoreapp3.1/app.dll
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/Debug/netcoreapp3.1/app.pdb
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/bin/Debug/netcoreapp3.1/RestSharp.dll
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/Debug/netcoreapp3.1/app.csproj.CopyComplete
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/bin/Debug/netcoreapp3.1/Flurl.dll
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/bin/Debug/netcoreapp3.1/Flurl.Http.dll
+/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/bin/Debug/netcoreapp3.1/Newtonsoft.Json.dll

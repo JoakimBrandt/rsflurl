@@ -1,0 +1,6 @@
+namespace Tool {
+
+    class Measurement {
+
+    }
+}
