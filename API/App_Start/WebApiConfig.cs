@@ -35,7 +35,8 @@ namespace API
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "{controller}"
+                routeTemplate: "{controller}/{amount}",
+                defaults: new { amount = RouteParameter.Optional }
             );
         }
     }
