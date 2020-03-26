@@ -1,5 +1,0 @@
-namespace Handler {
-    class UrlHandler{
-        
-    }
-}
