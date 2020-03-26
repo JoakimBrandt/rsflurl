@@ -67,13 +67,12 @@ namespace app
             try
             {
                 string typeOfClient = choicesArr[_typeOfClientArrPosition];
+                Stopwatch stopwatch = new Stopwatch();
+                Stopwatch stopwatch2 = new Stopwatch();
+                List<Task> allDownloads = new List<Task>{};
 
                 if(success) {
                     if(typeOfClient == "RS") {
-                        Stopwatch stopwatch = new Stopwatch();
-                        Stopwatch stopwatch2 = new Stopwatch();
-
-                        List<Task> allDownloads = new List<Task>{};
                         stopwatch.Start();
                         stopwatch2.Start();
 
@@ -82,27 +81,33 @@ namespace app
                         {
                             allDownloads.Add(RSFetchAsync());
                         }
+
                         stopwatch.Stop();
-
-
                         await Task.WhenAll(allDownloads);
                         stopwatch2.Stop();
 
-                        long elapsedTime = stopwatch.ElapsedMilliseconds;
-                        Console.WriteLine("RS RunTime downloads123 " + elapsedTime);
-                        
-                        long elapsedTime2 = stopwatch2.ElapsedMilliseconds;
-                        Console.WriteLine("RS RunTime downloads123 " + elapsedTime2);
-
                     } else if(typeOfClient == "FL") {
+                        stopwatch.Start();
+                        stopwatch2.Start();
+
+                        //TODO loopen i sig tar 154 ms... kom ihåg
                         for (int i = 0; i < amountOfCalls; i++)
-                        //TODO starta upp en tråd för varje anrop?
                         {
-                            await FLFetchAsync();
+                            allDownloads.Add(FLFetchAsync());
                         }
+
+                        stopwatch.Stop();
+                        await Task.WhenAll(allDownloads);
+                        stopwatch2.Stop();
                     } else { 
                         Console.WriteLine("You have not choosed any HTTP-CLient");
                     }
+
+                    long elapsedTime = stopwatch.ElapsedMilliseconds;
+                    Console.WriteLine("RunTime downloads123 " + elapsedTime);
+                    
+                    long elapsedTime2 = stopwatch2.ElapsedMilliseconds;
+                    Console.WriteLine("RunTime downloads123 " + elapsedTime2);
                 }
             }
 
