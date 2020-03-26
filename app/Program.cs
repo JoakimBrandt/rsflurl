@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 using Client;
 
@@ -69,12 +70,30 @@ namespace app
 
                 if(success) {
                     if(typeOfClient == "RS") {
+                        Stopwatch stopwatch = new Stopwatch();
+                        Stopwatch stopwatch2 = new Stopwatch();
+
+                        List<Task> allDownloads = new List<Task>{};
+                        stopwatch.Start();
+                        stopwatch2.Start();
+
+                        //TODO loopen i sig tar 154 ms... kom ihåg
                         for (int i = 0; i < amountOfCalls; i++)
-                        //TODO starta upp en tråd för varje anrop?
                         {
-                            await RSFetchAsync();
+                            allDownloads.Add(RSFetchAsync());
                         }
-                    
+                        stopwatch.Stop();
+
+
+                        await Task.WhenAll(allDownloads);
+                        stopwatch2.Stop();
+
+                        long elapsedTime = stopwatch.ElapsedMilliseconds;
+                        Console.WriteLine("RS RunTime downloads123 " + elapsedTime);
+                        
+                        long elapsedTime2 = stopwatch2.ElapsedMilliseconds;
+                        Console.WriteLine("RS RunTime downloads123 " + elapsedTime2);
+
                     } else if(typeOfClient == "FL") {
                         for (int i = 0; i < amountOfCalls; i++)
                         //TODO starta upp en tråd för varje anrop?
@@ -94,11 +113,13 @@ namespace app
             }   
         }
 
+
         private async static Task RSFetchAsync() {
             var client = new RestClient("https://api.postcodes.io");
             var getRequest = new RestRequest("postcodes/{postcode}");
             getRequest.AddUrlSegment("postcode", "IP1 3JR");
 
+            //TODO is this the best stopwatch?
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
