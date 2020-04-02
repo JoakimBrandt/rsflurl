@@ -44,7 +44,7 @@ namespace app
             var amountOfCalls = Console.ReadLine();
             Console.WriteLine("You entered '{0}'", amountOfCalls);
 
-            Console.WriteLine("How much data per call do you want? Type 1, 2 or 3: ");
+            Console.WriteLine("How much entries per call do you want? Type 100, 3213 or 10000: ");
             var amountOfDataPerCall = Console.ReadLine();
             Console.WriteLine("You entered '{0}'", amountOfDataPerCall);
 
@@ -67,24 +67,23 @@ namespace app
             try
             {
                 string typeOfClient = choicesArr[_typeOfClientArrPosition];
+                string amountOfDataPerCall = choicesArr[_amountOfDataPerCallArrPosition];
                 Stopwatch stopwatch = new Stopwatch();
-                Stopwatch stopwatch2 = new Stopwatch();
                 List<Task> allDownloads = new List<Task>{};
 
                 if(success) {
                     if(typeOfClient == "RS") {
+                        //TODO bästa stopwatchen?
                         stopwatch.Start();
-                        stopwatch2.Start();
 
                         //TODO loopen i sig tar 154 ms... kom ihåg
                         for (int i = 0; i < amountOfCalls; i++)
                         {
-                            allDownloads.Add(RSFetchAsync());
+                            allDownloads.Add(RSFetchAsync(amountOfDataPerCall));
                         }
 
-                        stopwatch.Stop();
                         await Task.WhenAll(allDownloads);
-                        stopwatch2.Stop();
+                        stopwatch.Stop();
 
                     } else if(typeOfClient == "FL") {
                         
@@ -92,7 +91,7 @@ namespace app
                         //TODO loopen i sig tar 154 ms... kom ihåg
                         for (int i = 0; i < amountOfCalls; i++)
                         {
-                            allDownloads.Add(FLFetchAsync());
+                            allDownloads.Add(FLFetchAsync(amountOfDataPerCall));
                         }
 
                         await Task.WhenAll(allDownloads);
@@ -106,7 +105,6 @@ namespace app
                     long elapsedTime = stopwatch.ElapsedMilliseconds;
                     Console.WriteLine("RunTime inner " + elapsedTime);
                     
-                    
                 }
             }
 
@@ -118,41 +116,27 @@ namespace app
         }
 
 
-        private async static Task RSFetchAsync() {
-            var client = new RestClient("https://api.postcodes.io");
-            var getRequest = new RestRequest("postcodes/{postcode}");
-            getRequest.AddUrlSegment("postcode", "IP1 3JR");
-
-            //TODO is this the best stopwatch?
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-
+        private async static Task RSFetchAsync(string amountOfEmployees) {
+            //TODO skapa ej RC och RR här? tar tid ifrån experimentet
+            var client = new RestClient("https://localhost:44371/");
+            var getRequest = new RestRequest($"employees/{amountOfEmployees}");
             var singleGeocodeResponseContainer = await client.ExecuteAsync(getRequest);
             
-            stopwatch.Stop();
-
-            long elapsedTime = stopwatch.ElapsedMilliseconds;
-            Console.WriteLine("RS RunTime " + elapsedTime);
-
+            /* 
             var singleGeocodeResponse = singleGeocodeResponseContainer.Content;
             Console.WriteLine("FRÅN API:"+singleGeocodeResponse); 
+            */
         }
 
-        private async static Task FLFetchAsync() {
-
+        private async static Task FLFetchAsync(string amountOfEmployees) {
 
             var response = await "https://localhost:44371/"
                 .AppendPathSegment("employees")
-                .AppendPathSegment("10000")
+                .AppendPathSegment(amountOfEmployees)
                 .GetJsonListAsync();
             
-            
-            
-            
-            Console.WriteLine("API hämtar postcoden från json objektets resultat:" + response[0].name);
+            //Console.WriteLine("API hämtar postcoden från json objektets resultat:" + response[0].name);
         }
-
-        
 
 
     }
