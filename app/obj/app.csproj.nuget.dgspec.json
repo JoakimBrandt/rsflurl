@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/app.csproj": {}
+    "F:\\Project\\git\\rsflurl\\app\\app.csproj": {}
   },
   "projects": {
-    "/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/app.csproj": {
+    "F:\\Project\\git\\rsflurl\\app\\app.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/app.csproj",
+        "projectUniqueName": "F:\\Project\\git\\rsflurl\\app\\app.csproj",
         "projectName": "app",
-        "projectPath": "/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/app.csproj",
-        "packagesPath": "/Users/fredriclundberg/.nuget/packages/",
-        "outputPath": "/Users/fredriclundberg/Desktop/rsflurl-project/rsflurl/app/obj/",
+        "projectPath": "F:\\Project\\git\\rsflurl\\app\\app.csproj",
+        "packagesPath": "C:\\Users\\joaki\\.nuget\\packages\\",
+        "outputPath": "F:\\Project\\git\\rsflurl\\app\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/fredriclundberg/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\joaki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -64,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -14,7 +14,7 @@ namespace API
         public static MySqlConnection Connection()
         {
 
-            string connectionString = "server=localhost;port=3306;database=data;username=root;password=MAgaZin465;";
+            string connectionString = "server=localhost;port=3306;database=data;username=root;password=root;";
 
             MySqlConnection connection = new MySqlConnection(connectionString);
 

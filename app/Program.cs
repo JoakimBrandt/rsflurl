@@ -2,12 +2,12 @@
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Collections.Generic;
-
 using Client;
-
+using System.Linq;
 using Flurl;
 using Flurl.Http;
 using RestSharp;
+using FlurlClient = Flurl.Http.FlurlClient;
 
 /*
     /get request to localhost:3000/Employees
@@ -27,7 +27,6 @@ namespace app
 
             try
             {
-                //ha inparameter i fetch()
                 fetch(arrayChoices).Wait();
             }
             catch (Exception ex)
@@ -40,11 +39,11 @@ namespace app
         {
             string[] choicesArr = new string[3];
 
-            Console.WriteLine("How many anrop do you want to send? Type 1, 8, 64, 128...: ");
+            Console.WriteLine("How many calls do you want to send?");
             var amountOfCalls = Console.ReadLine();
             Console.WriteLine("You entered '{0}'", amountOfCalls);
 
-            Console.WriteLine("How much entries per call do you want? Type 100, 3213 or 10000: ");
+            Console.WriteLine("How many entries per call do you want?");
             var amountOfDataPerCall = Console.ReadLine();
             Console.WriteLine("You entered '{0}'", amountOfDataPerCall);
 
@@ -69,20 +68,26 @@ namespace app
                 string typeOfClient = choicesArr[_typeOfClientArrPosition];
                 string amountOfDataPerCall = choicesArr[_amountOfDataPerCallArrPosition];
                 Stopwatch stopwatch = new Stopwatch();
-                List<Task> allDownloads = new List<Task>{};
-
-                if(success) {
+                List<Task> allDownloads = new List<Task> { };
+                List<RestRequest> restRequestsList = new List<RestRequest> { };
+                var restClient = new RestClient("https://localhost:44371/");
+                var flurlClient = new FlurlClient("https://localhost:44371/");
+                
+                if (success) {
                     if(typeOfClient == "RS") {
-                        //TODO bästa stopwatchen?
-                        stopwatch.Start();
 
-                        //TODO loopen i sig tar 154 ms... kom ihåg
                         for (int i = 0; i < amountOfCalls; i++)
                         {
-                            allDownloads.Add(RSFetchAsync(amountOfDataPerCall));
+                            var getRequest = new RestRequest($"employees/{amountOfDataPerCall}");
+                            restRequestsList.Add(getRequest);
                         }
 
-                        await Task.WhenAll(allDownloads);
+                        stopwatch.Start();
+
+                        var requestTasks = restRequestsList.Select(i => RSFetchAsync(restClient, i)).ToArray();
+
+                        await Task.WhenAll(requestTasks);
+
                         stopwatch.Stop();
 
                     } else if(typeOfClient == "FL") {
@@ -91,7 +96,7 @@ namespace app
                         //TODO loopen i sig tar 154 ms... kom ihåg
                         for (int i = 0; i < amountOfCalls; i++)
                         {
-                            allDownloads.Add(FLFetchAsync(amountOfDataPerCall));
+                            allDownloads.Add(FLFetchAsync(flurlClient, amountOfDataPerCall));
                         }
 
                         await Task.WhenAll(allDownloads);
@@ -116,28 +121,21 @@ namespace app
         }
 
 
-        private async static Task RSFetchAsync(string amountOfEmployees) {
-            //TODO skapa ej RC och RR här? tar tid ifrån experimentet
-            var client = new RestClient("https://localhost:44371/");
-            var getRequest = new RestRequest($"employees/{amountOfEmployees}");
-            var singleGeocodeResponseContainer = await client.ExecuteAsync(getRequest);
+        private async static Task RSFetchAsync(RestClient client, RestRequest getRequest) {
             
-            /* 
-            var singleGeocodeResponse = singleGeocodeResponseContainer.Content;
-            Console.WriteLine("FRÅN API:"+singleGeocodeResponse); 
-            */
+            var response = await client.ExecuteAsync(getRequest);
         }
 
-        private async static Task FLFetchAsync(string amountOfEmployees) {
+        private async static Task FLFetchAsync(FlurlClient client, string amountOfData) {
 
+            var response = await client.Request().AppendPathSegment("employees/").AppendPathSegment(amountOfData).GetJsonAsync();
+                /*
             var response = await "https://localhost:44371/"
                 .AppendPathSegment("employees")
                 .AppendPathSegment(amountOfEmployees)
                 .GetJsonListAsync();
+                */
             
-            //Console.WriteLine("API hämtar postcoden från json objektets resultat:" + response[0].name);
         }
-
-
     }
 }
