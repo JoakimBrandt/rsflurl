@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Collections.Generic;
@@ -74,6 +75,8 @@ namespace app
                 var restClient = new RestClient("https://localhost:44371/");
                 var flurlClient = new FlurlClient("https://localhost:44371/");
                 restClient.UseNewtonsoftJson();
+
+                Thread.Sleep(2000);
                 
                 if (success) {
                     if(typeOfClient == "rs") {
@@ -83,6 +86,8 @@ namespace app
                             var getRequest = new RestRequest($"employees/{amountOfDataPerCall}");
                             restRequestsList.Add(getRequest);
                         }
+
+                        Thread.Sleep(2000);
 
                         stopwatch.Start();
 
@@ -94,7 +99,6 @@ namespace app
                         }
 
                         await Task.WhenAll(allDownloads);
-
                         stopwatch.Stop();
 
                     } else if(typeOfClient == "fl") {
@@ -111,11 +115,11 @@ namespace app
 
                     }
                     else { 
-                        Console.WriteLine("You have not chosen any HTTP-CLient");
+                        throw("You have not chosen any HTTP-Client");
                     }
 
                     long elapsedTime = stopwatch.ElapsedMilliseconds;
-                    Console.WriteLine("RunTime inner " + elapsedTime);
+                    Console.WriteLine("RunTime in ms: " + elapsedTime);
                     
                 }
             }
