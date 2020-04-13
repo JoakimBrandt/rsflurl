@@ -34,15 +34,17 @@ namespace API.Controllers
                 this.country = country;
 
             }
-
         }
 
         // GET the x first employees
         public List<Results> Get(int amount)
         {
+
             MySqlConnection connection = WebApiConfig.Connection();
 
             MySqlCommand query = connection.CreateCommand();
+
+            establishConnection(connection);
 
             query.CommandText = "SELECT * FROM data.employees LIMIT @amount;";
 
@@ -50,14 +52,6 @@ namespace API.Controllers
 
             var Results = new List<Results>();
 
-            try
-            {
-                connection.Open();
-            }
-            catch (MySqlException Exception)
-            {
-                throw Exception;
-            }
 
             MySqlDataReader fetchQuery = query.ExecuteReader();
 
@@ -75,9 +69,25 @@ namespace API.Controllers
                     );
             }
 
-
-            connection.Close();
+            closeConnection(connection);
             return Results;
+        }
+        
+        static void closeConnection(MySqlConnection connection)
+        {
+            connection.Close();
+        }
+
+        static void establishConnection(MySqlConnection connection)
+        { 
+            try
+            {
+                connection.Open();
+            }
+            catch (MySqlException Exception)
+            {
+                throw Exception;
+            }
         }
     }
 }
