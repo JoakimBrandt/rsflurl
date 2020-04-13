@@ -115,7 +115,7 @@ namespace app
 
                     }
                     else { 
-                        throw("You have not chosen any HTTP-Client");
+                        throw new Exception("You have not chosen any HTTP-Client");
                     }
 
                     long elapsedTime = stopwatch.ElapsedMilliseconds;
