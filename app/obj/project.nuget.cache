@@ -1,14 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "yg7Ir3PBa9gB7uzJTzOgL8YUVHL3e4bAMKrooEWoLDzyrvM8iHnmUYPPM8enhsdsU0gVP4Ur5QK9omb3BAylNA==",
+  "dgSpecHash": "QUIrVZLyIHW24iewTc7DKK5D+tMbTtxvx6G26yJQjPiY9i8YDqzSzR2dbd+CTdZ8bk4P+xLZFPTnx4zi7VZT9A==",
   "success": true,
   "projectFilePath": "F:\\Project\\git\\rsflurl\\app\\app.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joaki\\.nuget\\packages\\flurl\\2.8.2\\flurl.2.8.2.nupkg.sha512",
     "C:\\Users\\joaki\\.nuget\\packages\\flurl.http\\2.4.2\\flurl.http.2.4.2.nupkg.sha512",
     "C:\\Users\\joaki\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
-    "C:\\Users\\joaki\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\joaki\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\joaki\\.nuget\\packages\\restsharp\\106.10.1\\restsharp.106.10.1.nupkg.sha512",
+    "C:\\Users\\joaki\\.nuget\\packages\\restsharp.serializers.newtonsoftjson\\106.10.1\\restsharp.serializers.newtonsoftjson.106.10.1.nupkg.sha512",
     "C:\\Users\\joaki\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
     "C:\\Users\\joaki\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512"
   ],

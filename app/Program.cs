@@ -8,6 +8,7 @@ using Flurl;
 using Flurl.Http;
 using RestSharp;
 using FlurlClient = Flurl.Http.FlurlClient;
+using RestSharp.Serializers.NewtonsoftJson;
 
 /*
     /get request to localhost:3000/Employees
@@ -72,9 +73,10 @@ namespace app
                 List<RestRequest> restRequestsList = new List<RestRequest> { };
                 var restClient = new RestClient("https://localhost:44371/");
                 var flurlClient = new FlurlClient("https://localhost:44371/");
+                restClient.UseNewtonsoftJson();
                 
                 if (success) {
-                    if(typeOfClient == "RS") {
+                    if(typeOfClient == "rs") {
 
                         for (int i = 0; i < amountOfCalls; i++)
                         {
@@ -90,10 +92,10 @@ namespace app
 
                         stopwatch.Stop();
 
-                    } else if(typeOfClient == "FL") {
+                    } else if(typeOfClient == "fl") {
                         
                         stopwatch.Start();
-                        //TODO loopen i sig tar 154 ms... kom ihåg
+
                         for (int i = 0; i < amountOfCalls; i++)
                         {
                             allDownloads.Add(FLFetchAsync(flurlClient, amountOfDataPerCall));
@@ -104,7 +106,7 @@ namespace app
 
                     }
                     else { 
-                        Console.WriteLine("You have not choosed any HTTP-CLient");
+                        Console.WriteLine("You have not chosen any HTTP-CLient");
                     }
 
                     long elapsedTime = stopwatch.ElapsedMilliseconds;
@@ -122,20 +124,13 @@ namespace app
 
 
         private async static Task RSFetchAsync(RestClient client, RestRequest getRequest) {
-            
+
             var response = await client.ExecuteAsync(getRequest);
         }
 
         private async static Task FLFetchAsync(FlurlClient client, string amountOfData) {
 
-            var response = await client.Request().AppendPathSegment("employees/").AppendPathSegment(amountOfData).GetJsonAsync();
-                /*
-            var response = await "https://localhost:44371/"
-                .AppendPathSegment("employees")
-                .AppendPathSegment(amountOfEmployees)
-                .GetJsonListAsync();
-                */
-            
+            var response = await client.Request().AppendPathSegment("employees/").AppendPathSegment(amountOfData).GetJsonListAsync();
         }
     }
 }

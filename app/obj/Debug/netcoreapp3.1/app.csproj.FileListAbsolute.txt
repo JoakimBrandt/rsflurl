@@ -50,3 +50,4 @@ F:\Project\git\rsflurl\app\obj\Debug\netcoreapp3.1\app.csproj.CopyComplete
 F:\Project\git\rsflurl\app\obj\Debug\netcoreapp3.1\app.dll
 F:\Project\git\rsflurl\app\obj\Debug\netcoreapp3.1\app.pdb
 F:\Project\git\rsflurl\app\obj\Debug\netcoreapp3.1\app.genruntimeconfig.cache
+F:\Project\git\rsflurl\app\bin\Debug\netcoreapp3.1\RestSharp.Serializers.NewtonsoftJson.dll
