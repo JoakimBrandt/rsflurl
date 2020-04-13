@@ -135,7 +135,7 @@ namespace app
 
         private async static Task FLFetchAsync(FlurlClient client, string amountOfData) {
 
-            var response = await client.Request().AppendPathSegment("employees/").AppendPathSegment(amountOfData).GetJsonListAsync();
+            var response = await client.Request().AppendPathSegment("employees/").AppendPathSegment(amountOfData).GetStringAsync();
         }
     }
 }

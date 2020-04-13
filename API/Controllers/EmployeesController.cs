@@ -5,13 +5,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using MySql.Data.MySqlClient;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace API.Controllers
 {
     public class EmployeesController : ApiController
     {
-
-        public class Results
+        public class Result
         {
             public string name { get; set; }
             public string department { get; set; }
@@ -22,7 +23,7 @@ namespace API.Controllers
             public string employeeNr { get; set; }
             public string country { get; set; }
 
-            public Results(string name, string surname, string department, string address, string number, string title, string employeeNr, string country)
+            public Result(string name, string surname, string department, string address, string number, string title, string employeeNr, string country)
             {
                 this.name = name;
                 this.department = department;
@@ -37,7 +38,7 @@ namespace API.Controllers
         }
 
         // GET the x first employees
-        public List<Results> Get(int amount)
+        public string Get(int amount)
         {
 
             MySqlConnection connection = WebApiConfig.Connection();
@@ -50,14 +51,13 @@ namespace API.Controllers
 
             query.Parameters.AddWithValue("@amount", amount);
 
-            var Results = new List<Results>();
-
+            var Results = new List<Result>();
 
             MySqlDataReader fetchQuery = query.ExecuteReader();
 
             while (fetchQuery.Read())
             {
-                Results.Add(new Results(
+                Results.Add(new Result(
                     fetchQuery["Name"].ToString(),
                     fetchQuery["SurName"].ToString(),
                     fetchQuery["Number"].ToString(),
@@ -66,18 +66,15 @@ namespace API.Controllers
                     fetchQuery["Title"].ToString(),
                     fetchQuery["EmployeeNR"].ToString(),
                     fetchQuery["Country"].ToString())
-                    );
+                );
             }
 
             closeConnection(connection);
-            return Results;
+
+            return JsonConvert.SerializeObject(Results);
         }
         
-        static void closeConnection(MySqlConnection connection)
-        {
-            connection.Close();
-        }
-
+        
         static void establishConnection(MySqlConnection connection)
         { 
             try
@@ -88,6 +85,10 @@ namespace API.Controllers
             {
                 throw Exception;
             }
+        }
+        static void closeConnection(MySqlConnection connection)
+        {
+            connection.Close();
         }
     }
 }
