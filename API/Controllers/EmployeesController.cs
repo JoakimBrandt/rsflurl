@@ -37,45 +37,6 @@ namespace API.Controllers
 
         }
 
-        // GET employees
-        public List<Results> Get()
-        {
-            MySqlConnection connection = WebApiConfig.Connection();
-
-            MySqlCommand query = connection.CreateCommand();
-
-            query.CommandText = "SELECT * FROM data.employees;";
-
-            var Results = new List<Results>();
-
-            try
-            {
-                connection.Open();
-            }
-            catch (MySqlException Exception)
-            {
-                throw Exception;
-            }
-
-            MySqlDataReader fetchQuery = query.ExecuteReader();
-
-            while ( fetchQuery.Read())
-            {
-                Results.Add(new Results(
-                    fetchQuery["Name"].ToString(),
-                    fetchQuery["SurName"].ToString(),
-                    fetchQuery["Number"].ToString(),
-                    fetchQuery["Address"].ToString(), 
-                    fetchQuery["Department"].ToString(),
-                    fetchQuery["Title"].ToString(),
-                    fetchQuery["EmployeeNR"].ToString(),
-                    fetchQuery["Country"].ToString())
-                    );
-            }
-
-            return Results;
-        }
-
         // GET the x first employees
         public List<Results> Get(int amount)
         {
