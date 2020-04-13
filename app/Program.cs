@@ -86,9 +86,14 @@ namespace app
 
                         stopwatch.Start();
 
-                        var requestTasks = restRequestsList.Select(i => RSFetchAsync(restClient, i)).ToArray();
+                        //var requestTasks = restRequestsList.Select(i => RSFetchAsync(restClient, i)).ToArray();
 
-                        await Task.WhenAll(requestTasks);
+                        foreach (var request in restRequestsList)
+                        {
+                            allDownloads.Add(RSFetchAsync(restClient, request));
+                        }
+
+                        await Task.WhenAll(allDownloads);
 
                         stopwatch.Stop();
 
