@@ -13,11 +13,8 @@ namespace API
 
         public static MySqlConnection Connection()
         {
-
             string connectionString = "server=localhost;port=3306;database=data;username=root;password=root;";
-
             MySqlConnection connection = new MySqlConnection(connectionString);
-
             return connection;
         }
 
@@ -25,14 +22,10 @@ namespace API
 
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
 
-            // Web API routes
             config.MapHttpAttributeRoutes();
-
             config.Formatters.JsonFormatter.SupportedMediaTypes
-                .Add(item: new MediaTypeHeaderValue("text/html"));
-
+                .Add(item: new MediaTypeHeaderValue("application/json"));
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "{controller}/{amount}",
