@@ -23,7 +23,14 @@ namespace API.Controllers
             public string employeeNr { get; set; }
             public string country { get; set; }
 
-            public Result(string name, string surname, string department, string address, string number, string title, string employeeNr, string country)
+            public Result(string name,
+                string surname,
+                string department,
+                string address,
+                string number,
+                string title,
+                string employeeNr,
+                string country)
             {
                 this.name = name;
                 this.department = department;
@@ -70,10 +77,8 @@ namespace API.Controllers
             }
 
             closeConnection(connection);
-
             return JsonConvert.SerializeObject(Results);
         }
-        
         
         static void establishConnection(MySqlConnection connection)
         { 
